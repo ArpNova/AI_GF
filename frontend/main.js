@@ -26,7 +26,7 @@ function addBubble(text, type) {
 }
 
 // Backend base
-const BASE = "http://localhost:3000"; // change if your backend runs elsewhere
+const BASE = "https://ai-gf-yd62.onrender.com"; // change if your backend runs elsewhere
 
 // Call chat backend (Gemini via server)
 async function chatRequest(message) {

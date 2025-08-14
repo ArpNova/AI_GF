@@ -15,7 +15,7 @@ app.use(helmet());
 
 // allow your dev frontend; replace with your prod domain later
 app.use(cors({
-  origin: ["http://localhost:8080", "http://127.0.0.1:8080", "http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:5500", "http://127.0.0.1:5500"],
+  origin: ["https://ai-gf-eight.vercel.app/", "http://127.0.0.1:8080", "http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:5500", "http://127.0.0.1:5500"],
   methods: ["POST", "GET"],
 }));
 
