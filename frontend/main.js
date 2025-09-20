@@ -44,25 +44,25 @@ async function chatRequest(message) {
 }
 
 // Call TTS backend (ElevenLabs via server)
-async function ttsRequest(text) {
-  const res = await fetch(`${BASE}/api/tts`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ text })
-  });
-  if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`TTS error: ${err}`);
-  }
-  const blob = await res.blob();
-  const url = URL.createObjectURL(blob);
-  const audio = new Audio(url);
-  await new Promise(resolve => {
-    audio.onended = resolve;
-    audio.play();
-  });
-  URL.revokeObjectURL(url);
-}
+// async function ttsRequest(text) {
+//   const res = await fetch(`${BASE}/api/tts`, {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({ text })
+//   });
+//   if (!res.ok) {
+//     const err = await res.text();
+//     throw new Error(`TTS error: ${err}`);
+//   }
+//   const blob = await res.blob();
+//   const url = URL.createObjectURL(blob);
+//   const audio = new Audio(url);
+//   await new Promise(resolve => {
+//     audio.onended = resolve;
+//     audio.play();
+//   });
+//   URL.revokeObjectURL(url);
+// }
 
 // Speech recognition
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
