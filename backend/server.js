@@ -9,6 +9,18 @@ dotenv.config();
 
 const app = express();
 
+// Calculate the correct path to the 'frontend' directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// Go up one level from 'backend' ('..') and then into 'frontend'
+const frontendPath = path.join(__dirname, "..", "frontend");
+
+
+// --- Middleware ---
+
+// Serve all static files from the 'frontend' directory
+app.use(express.static(frontendPath));
+
 // --- Security & basics ---
 app.use(express.json({ limit: "1mb" }));
 app.use(helmet());
