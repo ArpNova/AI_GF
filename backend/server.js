@@ -15,12 +15,12 @@ app.use(helmet());
 //
 // allow your dev frontend; replace with your prod domain later
 app.use(cors({
-  origin: ["https://ai-gf-eight.vercel.app/", "https://ai-gf-arpans-projects-64ad45af.vercel.app/", "https://ai-gf-git-main-arpans-projects-64ad45af.vercel.app/"],
+  origin: ["https://ai-gf-eight.vercel.app", "https://ai-gf-arpans-projects-64ad45af.vercel.app", "https://ai-gf-git-main-arpans-projects-64ad45af.vercel.app"],
   methods: ["POST", "GET"],
 }));
 
 // simple rate limit
-app.use("/api/", rateLimit({ windowMs: 60_000, max: 30 }));
+app.use("/api", rateLimit({ windowMs: 60_000, max: 30 }));
 
 const HOST = '0.0.0.0'
 const PORT = process.env.PORT || 8080;
