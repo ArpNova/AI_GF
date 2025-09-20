@@ -94,7 +94,7 @@ if (!SpeechRecognition) {
       await ttsRequest(reply);
     } catch (e) {
       console.error(e);
-      addBubble("Error: " + e.message, "bot");
+      // addBubble("Error: " + e.message, "bot");
     } finally {
       speakingText.innerText = "";
       statusEl.innerText = "Press mic to speak";
