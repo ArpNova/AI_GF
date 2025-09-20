@@ -9,12 +9,6 @@ dotenv.config();
 
 const app = express();
 
-
-// --- Middleware ---
-
-// Serve all static files from the 'frontend' directory
-app.use(express.static(frontendPath));
-
 // --- Security & basics ---
 app.use(express.json({ limit: "1mb" }));
 app.use(helmet());
