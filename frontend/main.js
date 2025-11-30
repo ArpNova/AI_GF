@@ -1,10 +1,8 @@
-// DOM
 const micBtn = document.getElementById("mic-btn");
 const chatbox = document.getElementById("chatbox");
 const statusEl = document.getElementById("status");
 const speakingText = document.getElementById("speaking-text");
 
-// Session ID (persist per browser)
 function getSessionId() {
   const KEY = "paro-session-id";
   let id = localStorage.getItem(KEY);
@@ -16,7 +14,6 @@ function getSessionId() {
 }
 const SESSION_ID = getSessionId();
 
-// Helpers
 function addBubble(text, type) {
   const bubble = document.createElement("div");
   bubble.className = `bubble ${type}`;
@@ -25,10 +22,8 @@ function addBubble(text, type) {
   chatbox.scrollTop = chatbox.scrollHeight;
 }
 
-// Backend base
-const BASE = "https://ai-gf-yd62.onrender.com"; // change if your backend runs elsewhere
+const BASE = "https://ai-gf-yd62.onrender.com";
 
-// Call chat backend (Gemini via server)
 async function chatRequest(message) {
   const res = await fetch(`${BASE}/api/chat`, {
     method: "POST",
@@ -43,28 +38,6 @@ async function chatRequest(message) {
   return await res.json();
 }
 
-// Call TTS backend (ElevenLabs via server)
-// async function ttsRequest(text) {
-//   const res = await fetch(`${BASE}/api/tts`, {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify({ text })
-//   });
-//   if (!res.ok) {
-//     const err = await res.text();
-//     throw new Error(`TTS error: ${err}`);
-//   }
-//   const blob = await res.blob();
-//   const url = URL.createObjectURL(blob);
-//   const audio = new Audio(url);
-//   await new Promise(resolve => {
-//     audio.onended = resolve;
-//     audio.play();
-//   });
-//   URL.revokeObjectURL(url);
-// }
-
-// Speech recognition
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 if (!SpeechRecognition) {
@@ -90,11 +63,9 @@ if (!SpeechRecognition) {
       speakingText.innerText = reply;
       addBubble(reply, "bot");
 
-      // Speak it
       await ttsRequest(reply);
     } catch (e) {
       console.error(e);
-      // addBubble("Error: " + e.message, "bot");
     } finally {
       speakingText.innerText = "";
       statusEl.innerText = "Press mic to speak";
